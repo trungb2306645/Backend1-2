@@ -4,6 +4,9 @@ const contactsRouter = require("./app/routes/contact.route");
 const ApiError = require("./app/api-error");
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 app.use("/api/contacts", contactsRouter);
 
 
@@ -24,9 +27,6 @@ app.use((error, req, res, next) => {
         message: error.message || "Internal Server Error",
     });
 });
-
-app.use(cors());
-app.use(express.json());
 
 
 app.get("/", (req, res) => {
